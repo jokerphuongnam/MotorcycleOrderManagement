@@ -4,14 +4,20 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.motorcycleordermanagement.model.database.domain.DetailOrder;
+import com.example.motorcycleordermanagement.model.database.domain.Motorcycle;
+import com.example.motorcycleordermanagement.model.database.domain.Order;
 import com.example.motorcycleordermanagement.model.usecase.AddDetailOrderUseCase;
 import com.example.schoolappliancesmanager.util.Resource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 @HiltViewModel
@@ -80,10 +86,35 @@ public class EditDetailOrderViewModel extends ViewModel {
         return completableObserver;
     }
 
-    public void addDetailOrder(){
+    public void addDetailOrder() {
         useCase.insert(getDetailOrder()).subscribe(getCompletableObserver());
     }
-    public void editDetailOrder(){
+
+    public void editDetailOrder() {
         useCase.edit(getDetailOrder()).subscribe(getCompletableObserver());
     }
+
+    public MutableLiveData<List<Order>> getOrders() {
+        if (orders == null) {
+            orders = new MutableLiveData<>(new ArrayList<>());
+        }
+        return orders;
+    }
+
+    public MutableLiveData<List<Motorcycle>> getMotorcycles() {
+        if (motorcycles == null) {
+            motorcycles = new MutableLiveData<>(new ArrayList<>());
+        }
+        return motorcycles;
+    }
+
+    private final CompositeDisposable composite = new CompositeDisposable();
+
+    public void initApplianceAndRoomName() {
+        composite.add(useCase.getAvailableMotorcycles().subscribe(motorcycles -> getMotorcycles().postValue(motorcycles), Throwable::printStackTrace));
+        composite.add(useCase.getOrder().subscribe(orders -> getOrders().postValue(orders), Throwable::printStackTrace));
+    }
+
+    private MutableLiveData<List<Order>> orders;
+    private MutableLiveData<List<Motorcycle>> motorcycles;
 }

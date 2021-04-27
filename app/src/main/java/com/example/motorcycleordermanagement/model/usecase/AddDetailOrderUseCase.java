@@ -17,7 +17,7 @@ public interface AddDetailOrderUseCase {
 
     Completable edit(DetailOrder detailOrder);
 
-    Flowable<List<Order>> getRoomNames();
+    Flowable<List<Order>> getOrder();
 
-    Flowable<List<Motorcycle>> getAvailableMotorcycle();
+    Flowable<List<Motorcycle>> getAvailableMotorcycles();
 }

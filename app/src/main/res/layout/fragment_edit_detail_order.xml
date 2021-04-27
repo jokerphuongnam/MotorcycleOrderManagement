@@ -29,7 +29,7 @@
                 android:text="@string/motorcycle_name" />
 
             <Spinner
-                android:id="@+id/appliance_spinner"
+                android:id="@+id/motorcycle_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7" />
@@ -51,7 +51,7 @@
                 android:text="@string/order_id" />
 
             <Spinner
-                android:id="@+id/room_spinner"
+                android:id="@+id/order_id_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7" />
@@ -83,7 +83,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/order_id"
+            android:id="@+id/detail_order_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

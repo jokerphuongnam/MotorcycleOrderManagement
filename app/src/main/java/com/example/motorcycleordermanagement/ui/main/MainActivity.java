@@ -29,8 +29,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public MainAdapter getMainAdapter() {
         if (mainAdapter == null) {
             mainAdapter = new MainAdapter(this);
-            mainAdapter.addFragment(new DetailOrderFragment());
             mainAdapter.addFragment(new MotorcycleFragment());
+            mainAdapter.addFragment(new DetailOrderFragment());
             mainAdapter.addFragment(new OrderFragment());
         }
         return mainAdapter;

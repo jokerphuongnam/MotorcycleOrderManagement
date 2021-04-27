@@ -39,12 +39,12 @@ public class DefaultAddDetailOrderUseCaseImpl implements AddDetailOrderUseCase {
     }
 
     @Override
-    public Flowable<List<Order>> getRoomNames() {
+    public Flowable<List<Order>> getOrder() {
         return orderRepository.getAllData();
     }
 
     @Override
-    public Flowable<List<Motorcycle>> getAvailableMotorcycle() {
+    public Flowable<List<Motorcycle>> getAvailableMotorcycles() {
         return motorcycleRepository.getAvailableMotorcycle();
     }
 }

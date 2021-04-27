@@ -16,4 +16,9 @@
     <string name="price">Price:</string>
     <string name="date_order">Date order:</string>
     <string name="order_id">Order id:</string>
+    <string name="motorcycle_id">Motorcycle id:</string>
+    <string name="save_success">Save success</string>
+    <string name="save_fail">Save fail</string>
+    <string name="motorcycle_empty">Motorcycle is empty</string>
+    <string name="order_empty">Order is empty</string>
 </resources>

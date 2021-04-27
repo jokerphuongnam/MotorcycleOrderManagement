@@ -23,7 +23,7 @@ public class Motorcycle implements Serializable {
     @ColumnInfo(name = "capacity")
     private int capacity;
     @ColumnInfo(name = "count")
-    private int count;
+    private int count = 1;
     @ColumnInfo(name = "image")
     private String image;
 

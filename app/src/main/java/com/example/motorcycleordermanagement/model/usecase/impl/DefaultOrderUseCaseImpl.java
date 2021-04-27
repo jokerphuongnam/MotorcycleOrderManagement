@@ -28,7 +28,7 @@ public class DefaultOrderUseCaseImpl implements OrderUseCase {
 
     @Override
     public Flowable<List<Order>> filter(long from, long to) {
-        return repository.filter(from, to);
+        return repository.filter(from, to).subscribeOn(Schedulers.io());
     }
 
     @Override
