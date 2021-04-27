@@ -9,13 +9,15 @@ import com.example.schoolappliancesmanager.util.Resource;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 
+@HiltViewModel
 public class EditOrderViewModel extends ViewModel {
 
-    private AddOrderUseCase useCase;
+    private final AddOrderUseCase useCase;
 
     @Inject
     public EditOrderViewModel(AddOrderUseCase useCase) {

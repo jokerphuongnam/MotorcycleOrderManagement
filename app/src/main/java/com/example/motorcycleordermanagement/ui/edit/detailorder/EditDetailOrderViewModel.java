@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 @HiltViewModel
 public class EditDetailOrderViewModel extends ViewModel {
-    private AddDetailOrderUseCase useCase;
+    private final AddDetailOrderUseCase useCase;
 
     @Inject
     public EditDetailOrderViewModel(AddDetailOrderUseCase useCase) {

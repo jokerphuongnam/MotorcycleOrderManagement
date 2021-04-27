@@ -14,8 +14,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 import static com.example.motorcycleordermanagement.ui.edit.EditActivity.DATA;
 
+@AndroidEntryPoint
 public class EditOrderFragment extends BaseFragment<FragmentEditOrderBinding, EditOrderViewModel> {
     public EditOrderFragment() {
         super(R.layout.fragment_edit_order);
@@ -33,11 +36,11 @@ public class EditOrderFragment extends BaseFragment<FragmentEditOrderBinding, Ed
     @Override
     public void createView() {
         viewModel.initOrder((Order) getActivity().getIntent().getSerializableExtra(DATA));
-        binding.calendarChoose.setOnClickListener((v) -> {
-            getDatePicker().show();
-        });
+        binding.calendarChoose.setOnClickListener((v) -> getDatePicker().show());
         binding.success.setOnClickListener((v) -> {
-            viewModel.setOrder(binding.getOrder());
+            Order order = binding.getOrder();
+            order.setPrice(Long.parseLong(binding.price.getText().toString()));
+            viewModel.setOrder(order);
             switch (getActivityViewModel().getTypeAction()){
                 case ADD:
                     viewModel.addOrder();
@@ -46,6 +49,9 @@ public class EditOrderFragment extends BaseFragment<FragmentEditOrderBinding, Ed
                     viewModel.editOrder();
                     break;
             }
+        });
+        viewModel.getSuccess().observe(getViewLifecycleOwner(), (success) -> {
+            getActivity().finish();
         });
     }
 

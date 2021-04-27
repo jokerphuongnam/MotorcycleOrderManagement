@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:backgroundTint="@android:color/transparent"
-                android:inputType="text"
+                android:inputType="number"
                 android:text="@{String.valueOf(order.price)}" />
         </LinearLayout>
 

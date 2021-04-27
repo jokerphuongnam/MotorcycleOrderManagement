@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.motorcycleordermanagement.model.database.domain.DetailOrder;
 import com.example.motorcycleordermanagement.model.usecase.DetailOrderUseCase;
-import com.example.motorcycleordermanagement.utils.ObjectUtil;
 import com.example.schoolappliancesmanager.util.Resource;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
@@ -42,8 +42,10 @@ public class DetailOrderViewModel extends ViewModel {
     Gson gson;
 
     public void initData() {
-        disposable = useCase.getDetailOrder().subscribe((orders) -> {
-            data.postValue(ObjectUtil.clone(orders, gson));
+        disposable = useCase.getDetailOrder().subscribe((detailOrders) -> {
+            String json = gson.toJson(detailOrders);
+            data.postValue(gson.fromJson(json, new TypeToken<List<DetailOrder>>() {
+            }.getType()));
         }, Throwable::printStackTrace);
     }
 

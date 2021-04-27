@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:backgroundTint="@android:color/transparent"
-                android:inputType="text"
+                android:inputType="number"
                 android:text="@{String.valueOf(motorcycle.capacity)}" />
         </LinearLayout>
 
@@ -204,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:backgroundTint="@android:color/transparent"
-                android:inputType="text"
+                android:inputType="number"
                 android:text="@{String.valueOf(motorcycle.count)}" />
         </LinearLayout>
 

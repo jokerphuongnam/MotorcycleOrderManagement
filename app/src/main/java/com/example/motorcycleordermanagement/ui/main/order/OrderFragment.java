@@ -28,8 +28,6 @@ public class OrderFragment extends BaseFragment<FragmentOrderBinding, OrderViewM
 
     private OrderAdapter adapter = null;
 
-    private Intent intent = null;
-
     @NonNull
     private OrderAdapter getAdapter() {
         if (adapter == null) {

@@ -8,8 +8,11 @@ import com.example.motorcycleordermanagement.model.database.domain.DetailOrder;
 import com.example.motorcycleordermanagement.ui.base.BaseFragment;
 import com.example.motorcycleordermanagement.ui.edit.EditViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 import static com.example.motorcycleordermanagement.ui.edit.EditActivity.DATA;
 
+@AndroidEntryPoint
 public class EditDetailOrderFragment extends BaseFragment<FragmentEditDetailOrderBinding, EditDetailOrderViewModel> {
     public EditDetailOrderFragment() {
         super(R.layout.fragment_edit_detail_order);
@@ -36,6 +39,9 @@ public class EditDetailOrderFragment extends BaseFragment<FragmentEditDetailOrde
                     viewModel.editDetailOrder();
                     break;
             }
+        });
+        viewModel.getSuccess().observe(getViewLifecycleOwner(), (success) -> {
+            getActivity().finish();
         });
     }
 

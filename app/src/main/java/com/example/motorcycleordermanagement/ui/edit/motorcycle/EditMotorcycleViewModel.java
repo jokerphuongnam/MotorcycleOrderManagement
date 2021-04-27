@@ -9,19 +9,20 @@ import com.example.schoolappliancesmanager.util.Resource;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 
+@HiltViewModel
 public class EditMotorcycleViewModel extends ViewModel {
-
-
-    private AddMotorcycleUseCase useCase;
+    private final AddMotorcycleUseCase useCase;
 
     @Inject
     public EditMotorcycleViewModel(AddMotorcycleUseCase useCase) {
         this.useCase = useCase;
     }
+
     public Motorcycle getMotorcycle() {
         return motorcycle;
     }
@@ -83,6 +84,7 @@ public class EditMotorcycleViewModel extends ViewModel {
     public void addMotocycle(){
         useCase.add(getMotorcycle()).subscribe(getCompletableObserver());
     }
+
     public void editMotocycle(){
         useCase.edit(getMotorcycle()).subscribe(getCompletableObserver());
     }

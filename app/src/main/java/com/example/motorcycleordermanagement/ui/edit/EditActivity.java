@@ -16,9 +16,12 @@ import com.example.motorcycleordermanagement.ui.edit.detailorder.EditDetailOrder
 import com.example.motorcycleordermanagement.ui.edit.motorcycle.EditMotorcycleFragment;
 import com.example.motorcycleordermanagement.ui.edit.order.EditOrderFragment;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 import static com.example.motorcycleordermanagement.ui.edit.EditActivity.TypeAction.ADD;
 import static com.example.motorcycleordermanagement.ui.edit.EditActivity.TypeAction.EDIT;
 
+@AndroidEntryPoint
 public class EditActivity extends BaseActivity<ActivityEditBinding, EditViewModel> {
     public EditActivity() {
         super(R.layout.activity_edit);

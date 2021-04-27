@@ -4,11 +4,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.motorcycleordermanagement.model.database.domain.Motorcycle;
-import com.example.motorcycleordermanagement.model.database.domain.Order;
 import com.example.motorcycleordermanagement.model.usecase.MotorcycleUseCase;
-import com.example.motorcycleordermanagement.utils.ObjectUtil;
 import com.example.schoolappliancesmanager.util.Resource;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
@@ -42,7 +41,9 @@ public class MotorcycleViewModel extends ViewModel {
 
     public void initData() {
         disposable = useCase.getMotorcycle().subscribe((motorcycles) -> {
-            data.postValue(ObjectUtil.clone(motorcycles, gson));
+            String json = gson.toJson(motorcycles);
+            data.postValue(gson.fromJson(json, new TypeToken<List<Motorcycle>>() {
+            }.getType()));
         }, Throwable::printStackTrace);
     }
 
