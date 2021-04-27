@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DefaultMotorcycleRepositoryImpl implements MotorcycleRepository {
@@ -28,6 +29,11 @@ public class DefaultMotorcycleRepositoryImpl implements MotorcycleRepository {
     @Override
     public Flowable<List<Motorcycle>> getAvailableMotorcycle() {
         return local.getAvailableMotorcycle();
+    }
+
+    @Override
+    public Maybe<Motorcycle> getMotorcycleById(long motorcycleId) {
+        return local.getMotorcycleById(motorcycleId);
     }
 
     @Override

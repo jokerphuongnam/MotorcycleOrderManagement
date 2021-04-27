@@ -1,6 +1,7 @@
 package com.example.motorcycleordermanagement.ui.edit.order;
 
 import android.app.DatePickerDialog;
+import android.view.View;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -9,6 +10,7 @@ import com.example.motorcycleordermanagement.databinding.FragmentEditOrderBindin
 import com.example.motorcycleordermanagement.model.database.domain.Order;
 import com.example.motorcycleordermanagement.ui.base.BaseFragment;
 import com.example.motorcycleordermanagement.ui.edit.EditViewModel;
+import com.example.schoolappliancesmanager.util.Resource;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,8 +42,17 @@ public class EditOrderFragment extends BaseFragment<FragmentEditOrderBinding, Ed
         binding.success.setOnClickListener((v) -> {
             Order order = binding.getOrder();
             order.setPrice(Long.parseLong(binding.price.getText().toString()));
+            if (order.getCustomer().isEmpty()) {
+                binding.orderError.setVisibility(View.VISIBLE);
+                binding.orderError.setText(R.string.customer_be_empty);
+                return;
+            }
+            if (order.getPrice() == 0 || binding.price.getText().toString().isEmpty()) {
+                binding.orderError.setVisibility(View.VISIBLE);
+                binding.orderError.setText(R.string.price_greater_than_zero);
+            }
             viewModel.setOrder(order);
-            switch (getActivityViewModel().getTypeAction()){
+            switch (getActivityViewModel().getTypeAction()) {
                 case ADD:
                     viewModel.addOrder();
                     break;
@@ -52,6 +63,17 @@ public class EditOrderFragment extends BaseFragment<FragmentEditOrderBinding, Ed
         });
         viewModel.getSuccess().observe(getViewLifecycleOwner(), (success) -> {
             getActivity().finish();
+        });
+        viewModel.getSuccess().observe(getViewLifecycleOwner(), (resource) -> {
+            if (resource instanceof Resource.Loading) {
+                binding.orderError.setVisibility(View.GONE);
+            } else if (resource instanceof Resource.Success) {
+                getActivity().finish();
+                showToast(getString(R.string.save_success));
+            } else if (resource instanceof Resource.Error) {
+                binding.orderError.setText(R.string.save_fail);
+                binding.orderError.setVisibility(View.VISIBLE);
+            }
         });
     }
 

@@ -21,4 +21,10 @@
     <string name="save_fail">Save fail</string>
     <string name="motorcycle_empty">Motorcycle is empty</string>
     <string name="order_empty">Order is empty</string>
+    <string name="name_empty">Name can\'t be empty</string>
+    <string name="capacity_greater_than_zero">Capacity must be greater than 0</string>
+    <string name="count_greater_than_zero" >Count must be greater than 0</string>
+    <string name="customer_be_empty">Customer cannot be empty</string>
+    <string name="price_greater_than_zero" >Price must be greater than 0</string>
+    <string name="count_rather_than">Count of detail other rather than count of motorcycle</string>
 </resources>

@@ -8,12 +8,15 @@ import com.example.motorcycleordermanagement.model.repository.MotorcycleReposito
 import com.example.motorcycleordermanagement.model.repository.OrderRepository;
 import com.example.motorcycleordermanagement.model.usecase.AddDetailOrderUseCase;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DefaultAddDetailOrderUseCaseImpl implements AddDetailOrderUseCase {
 
@@ -30,21 +33,30 @@ public class DefaultAddDetailOrderUseCaseImpl implements AddDetailOrderUseCase {
 
     @Override
     public Completable insert(DetailOrder detailOrder) {
-        return detailOrderRepository.insert(detailOrder);
+        return detailOrderRepository.insert(detailOrder).andThen(minusCountInMotorcycle(detailOrder)).subscribeOn(Schedulers.io());
     }
 
     @Override
     public Completable edit(DetailOrder detailOrder) {
-        return detailOrderRepository.update(detailOrder);
+        return detailOrderRepository.update(detailOrder).andThen(minusCountInMotorcycle(detailOrder)).subscribeOn(Schedulers.io());
+    }
+
+    @NotNull
+    private Completable minusCountInMotorcycle(@NotNull DetailOrder detailOrder) {
+        return motorcycleRepository.getMotorcycleById(detailOrder.getMotorcycleId()).flatMapCompletable(motorcycle -> {
+            int count = motorcycle.getCount();
+            motorcycle.setCount(count - detailOrder.getCount());
+            return motorcycleRepository.update(motorcycle);
+        });
     }
 
     @Override
     public Flowable<List<Order>> getOrder() {
-        return orderRepository.getAllData();
+        return orderRepository.getAllData().subscribeOn(Schedulers.io());
     }
 
     @Override
     public Flowable<List<Motorcycle>> getAvailableMotorcycles() {
-        return motorcycleRepository.getAvailableMotorcycle();
+        return motorcycleRepository.getAvailableMotorcycle().subscribeOn(Schedulers.io());
     }
 }

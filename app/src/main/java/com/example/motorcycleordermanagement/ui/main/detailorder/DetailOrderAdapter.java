@@ -31,7 +31,7 @@ public class DetailOrderAdapter extends ListAdapter<DetailOrder, DetailOrderAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.bind(getItem(position));
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {

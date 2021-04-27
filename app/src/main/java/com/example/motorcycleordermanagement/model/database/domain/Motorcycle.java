@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Motorcycle implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "motorcycle_id")
-    private long motorcycleId;
+    private int motorcycleId;
     @ColumnInfo(name = "name")
     private String name;
     @ColumnInfo(name = "capacity")
@@ -27,11 +27,11 @@ public class Motorcycle implements Serializable {
     @ColumnInfo(name = "image")
     private String image;
 
-    public long getMotorcycleId() {
+    public int getMotorcycleId() {
         return motorcycleId;
     }
 
-    public void setMotorcycleId(long motorcycleId) {
+    public void setMotorcycleId(int motorcycleId) {
         this.motorcycleId = motorcycleId;
     }
 

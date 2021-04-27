@@ -1,10 +1,9 @@
 package com.example.motorcycleordermanagement.ui.edit;
 
-import android.content.Intent;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,10 +31,12 @@ public class EditActivity extends BaseActivity<ActivityEditBinding, EditViewMode
     private void setUpActionBar() {
         setSupportActionBar(binding.toolbar);
         actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setUpFragment() {
+        actionBar.setTitle(getString(viewModel.getTypeEdit().getRes()));
         switch (viewModel.getTypeEdit()) {
             case MOTORCYCLE:
                 openFragment(new EditMotorcycleFragment(), getString(R.string.motorcycle));
@@ -93,6 +94,16 @@ public class EditActivity extends BaseActivity<ActivityEditBinding, EditViewMode
     }
 
     public enum TypeEdit {
-        MOTORCYCLE, DETAIL_ORDER, ORDER;
+        MOTORCYCLE(R.string.motorcycle), DETAIL_ORDER(R.string.detail_order), ORDER(R.string.order);
+        @StringRes
+        int res;
+
+        public int getRes() {
+            return res;
+        }
+
+        TypeEdit(@StringRes int res) {
+            this.res = res;
+        }
     }
 }
