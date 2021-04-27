@@ -27,6 +27,8 @@ public class Order implements Serializable {
     private String customer;
     @ColumnInfo(name = "date_order")
     private long dateOrder;
+    @ColumnInfo(name = "price")
+    private long price;
 
     public int getOrderId() {
         return orderId;
@@ -50,6 +52,14 @@ public class Order implements Serializable {
 
     public void setDateOrder(long dateOrder) {
         this.dateOrder = dateOrder;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
     }
 
     @NonNull

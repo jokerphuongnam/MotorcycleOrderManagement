@@ -11,6 +11,6 @@ import io.reactivex.rxjava3.core.Single;
 
 @Singleton
 public interface AddOrderUseCase {
-    @NonNull Completable addRoom(Order order);
-    @NonNull Completable editRoom(Order order);
+    @NonNull Completable add(Order order);
+    @NonNull Completable edit(Order order);
 }

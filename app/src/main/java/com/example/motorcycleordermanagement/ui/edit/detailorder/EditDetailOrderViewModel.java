@@ -1,15 +1,11 @@
-package com.example.motorcycleordermanagement.ui.main.detailorder;
+package com.example.motorcycleordermanagement.ui.edit.detailorder;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.motorcycleordermanagement.model.database.domain.DetailOrder;
-import com.example.motorcycleordermanagement.model.usecase.DetailOrderUseCase;
-import com.example.motorcycleordermanagement.utils.ObjectUtil;
+import com.example.motorcycleordermanagement.model.usecase.AddDetailOrderUseCase;
 import com.example.schoolappliancesmanager.util.Resource;
-import com.google.gson.Gson;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,36 +15,33 @@ import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 @HiltViewModel
-public class DetailOrderViewModel extends ViewModel {
-    private final DetailOrderUseCase useCase;
+public class EditDetailOrderViewModel extends ViewModel {
+    private AddDetailOrderUseCase useCase;
 
     @Inject
-    public DetailOrderViewModel(DetailOrderUseCase useCase) {
+    public EditDetailOrderViewModel(AddDetailOrderUseCase useCase) {
         this.useCase = useCase;
     }
 
-    private MutableLiveData<List<DetailOrder>> data = null;
+    public DetailOrder getDetailOrder() {
+        return detailOrder;
+    }
 
-    public MutableLiveData<List<DetailOrder>> getData() {
-        if (data == null) {
-            data = new MutableLiveData<>();
+    public void setDetailOrder(DetailOrder detailOrder) {
+        this.detailOrder = detailOrder;
+    }
+
+    private DetailOrder detailOrder;
+
+    public void initDetailOrder(DetailOrder detailOrder) {
+        if (detailOrder == null) {
+            this.detailOrder = new DetailOrder();
+        } else {
+            this.detailOrder = detailOrder;
         }
-        return data;
     }
 
-    private Disposable disposable;
-
-    @Inject
-    Gson gson;
-
-    public void initData() {
-        disposable = useCase.getDetailOrder().subscribe((orders) -> {
-            data.postValue(ObjectUtil.clone(orders, gson));
-        }, Throwable::printStackTrace);
-    }
-
-
-    private MutableLiveData<Resource<Boolean>> success = null;
+    private MutableLiveData<Resource<Boolean>> success;
 
     public MutableLiveData<Resource<Boolean>> getSuccess() {
         if (success == null) {
@@ -87,15 +80,10 @@ public class DetailOrderViewModel extends ViewModel {
         return completableObserver;
     }
 
-    public void delete(DetailOrder detailOrder) {
-        useCase.delete(detailOrder).subscribe(getCompletableObserver());
+    public void addDetailOrder(){
+        useCase.insert(getDetailOrder()).subscribe(getCompletableObserver());
     }
-
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        disposable.dispose();
+    public void editDetailOrder(){
+        useCase.edit(getDetailOrder()).subscribe(getCompletableObserver());
     }
-
 }

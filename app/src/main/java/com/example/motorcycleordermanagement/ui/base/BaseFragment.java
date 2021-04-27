@@ -48,9 +48,11 @@ public abstract class BaseFragment<VB extends ViewDataBinding, VM extends ViewMo
         return null;
     }
 
+    protected Calendar getCalendar(){return null;};
+
     @NonNull
     protected DatePickerDialog getDatePicker() {
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = getCalendar();
         return new DatePickerDialog(
                 getContext(),
                 getDatePickerCallBack(),

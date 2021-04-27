@@ -24,6 +24,8 @@ public class Motorcycle implements Serializable {
     private int capacity;
     @ColumnInfo(name = "count")
     private int count;
+    @ColumnInfo(name = "image")
+    private String image;
 
     public long getMotorcycleId() {
         return motorcycleId;
@@ -55,5 +57,13 @@ public class Motorcycle implements Serializable {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

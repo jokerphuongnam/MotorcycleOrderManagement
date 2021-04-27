@@ -47,7 +47,7 @@ public class OrderViewModel extends ViewModel {
         }, Throwable::printStackTrace);
     }
 
-    private MutableLiveData<Resource<Boolean>> success;
+    private MutableLiveData<Resource<Boolean>> success = null;
 
     public MutableLiveData<Resource<Boolean>> getSuccess() {
         if (success == null) {

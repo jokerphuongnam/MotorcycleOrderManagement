@@ -29,7 +29,7 @@ public class DefaultAddDetailOrderUseCaseImpl implements AddDetailOrderUseCase {
     }
 
     @Override
-    public Completable borrow(DetailOrder detailOrder) {
+    public Completable insert(DetailOrder detailOrder) {
         return detailOrderRepository.insert(detailOrder);
     }
 

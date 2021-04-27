@@ -2,4 +2,18 @@
     <string name="app_name">MotorcycleOrderManagement</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="delete_complete">Delete complete</string>
+    <string name="motorcycle">Motorcycle</string>
+    <string name="detail_order">Detail order</string>
+    <string name="order">Order</string>
+    <string name="add_image">Add image</string>
+    <string name="delete_image">Delete image</string>
+    <string name="motorcycle_name">Motorcycle name:</string>
+    <string name="capacity">Capacity:</string>
+    <string name="count">Count:</string>
+    <string name="success">Success</string>
+    <string name="customer_name">Customer name:</string>
+    <string name="price">Price:</string>
+    <string name="date_order">Date order:</string>
+    <string name="order_id">Order id:</string>
 </resources>

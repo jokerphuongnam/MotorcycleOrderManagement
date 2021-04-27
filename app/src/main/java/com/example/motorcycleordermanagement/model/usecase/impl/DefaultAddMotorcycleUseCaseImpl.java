@@ -21,12 +21,12 @@ public class DefaultAddMotorcycleUseCaseImpl implements AddMotorcycleUseCase {
     }
 
     @Override
-    public @NonNull Completable addAppliance(Motorcycle motorcycle) {
+    public @NonNull Completable add(Motorcycle motorcycle) {
         return  repository.insert(motorcycle).subscribeOn(Schedulers.io());
     }
 
     @Override
-    public @NonNull Completable editAppliance(Motorcycle motorcycle) {
+    public @NonNull Completable edit(Motorcycle motorcycle) {
         return  repository.update(motorcycle).subscribeOn(Schedulers.io());
     }
 }

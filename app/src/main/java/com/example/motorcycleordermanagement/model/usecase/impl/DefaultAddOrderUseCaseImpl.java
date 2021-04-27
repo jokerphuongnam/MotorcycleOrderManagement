@@ -22,12 +22,12 @@ public class DefaultAddOrderUseCaseImpl implements AddOrderUseCase {
 
 
     @Override
-    public @NonNull Completable addRoom(Order order) {
+    public @NonNull Completable add(Order order) {
         return repository.insert(order).subscribeOn(Schedulers.io());
     }
 
     @Override
-    public @NonNull Completable editRoom(Order order) {
+    public @NonNull Completable edit(Order order) {
         return repository.update(order).subscribeOn(Schedulers.io());
     }
 }

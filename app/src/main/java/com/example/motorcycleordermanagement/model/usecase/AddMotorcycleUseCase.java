@@ -10,6 +10,6 @@ import io.reactivex.rxjava3.core.Completable;
 
 @Singleton
 public interface AddMotorcycleUseCase {
-    @NonNull Completable addAppliance(Motorcycle motorcycle);
-    @NonNull Completable editAppliance(Motorcycle motorcycle);
+    @NonNull Completable add(Motorcycle motorcycle);
+    @NonNull Completable edit(Motorcycle motorcycle);
 }

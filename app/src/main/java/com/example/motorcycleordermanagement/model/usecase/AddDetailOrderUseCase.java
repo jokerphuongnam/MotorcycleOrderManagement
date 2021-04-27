@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.core.Flowable;
 
 @Singleton
 public interface AddDetailOrderUseCase {
-    Completable borrow(DetailOrder detailOrder);
+    Completable insert(DetailOrder detailOrder);
 
     Completable edit(DetailOrder detailOrder);
 
