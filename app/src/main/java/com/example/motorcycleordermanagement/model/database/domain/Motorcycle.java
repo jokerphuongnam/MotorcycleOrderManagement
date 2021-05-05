@@ -25,7 +25,7 @@ public class Motorcycle implements Serializable {
     @ColumnInfo(name = "count")
     private int count = 1;
     @ColumnInfo(name = "image")
-    private String image;
+    private String image = "";
 
     public int getMotorcycleId() {
         return motorcycleId;
