@@ -25,7 +25,7 @@ public interface DetailOrderDao extends DetailOrderLocal {
     @Override
     Completable insert(DetailOrder detailOrder);
 
-    @Update
+    @Delete
     @Override
     Completable delete(DetailOrder detailOrder);
 
