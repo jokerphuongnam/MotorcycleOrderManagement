@@ -29,7 +29,7 @@ public interface DetailOrderDao extends DetailOrderLocal {
     @Override
     Completable delete(DetailOrder detailOrder);
 
-    @Delete
+    @Update
     @Override
     Completable update(DetailOrder detailOrder);
 }
