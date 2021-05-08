@@ -39,14 +39,14 @@ public class EditDetailOrderFragment extends BaseFragment<FragmentEditDetailOrde
 
     private EditViewModel activityViewModel;
 
-    public ArrayAdapter<String> getMotorcycleAdapter() {
-        List<String> motorcycles;
+    public ArrayAdapter<Motorcycle> getMotorcycleAdapter() {
+        List<Motorcycle> motorcycles;
         if (viewModel.getMotorcycles().getValue() == null || viewModel.getMotorcycles().getValue().isEmpty()) {
             motorcycles = new ArrayList<>();
         } else {
-            motorcycles = viewModel.getMotorcycles().getValue().stream().map(motorcycle -> String.valueOf(motorcycle.getMotorcycleId())).collect(Collectors.toList());
+            motorcycles = viewModel.getMotorcycles().getValue();
         }
-        return new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, motorcycles);
+        return new MotorcycleSpinnerAdapter(requireContext(), motorcycles);
     }
 
     public ArrayAdapter<String> getOrdersAdapter() {
